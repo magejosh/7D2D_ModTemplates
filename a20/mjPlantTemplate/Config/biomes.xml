@@ -1,0 +1,104 @@
+<mj>
+ 
+	<!-- mjedit - the following method is handy if you want to make small decoration POIs of some terrain and your new plant blocks. obviously if pine_forest isn't where you want it you'll need to change that xpath target for the decoration, then the decoration name should be changed to your decoration prefab's name. -->
+	<!-- method for spawning prefabs of custom pois via biomes from Devrix. -->
+ <!-- <append xpath="/worldgeneration/biomes/biome[@name='pine_forest']/decorations">
+  <decoration type="prefab" name="sorcery_camp_fallen" prob=".01" rotatemax="3"/>
+</append> -->
+ 
+		<!-- mjedit - this double command to remove then append it back at the end of the list method helps keep your plant in the right range of plants spawning in the biome easily.  -->
+	<remove xpath="/worldgeneration/biomes/biome[@name='snow']/decorations/decoration[@blockname='treeSnowyGrassDiagonal']"/>
+	<append xpath="/worldgeneration/biomes/biome[@name='snow']/decorations">
+
+			<!-- mjedit - these following 4 lines are totally extra and should probably be deleted from your mod. -->
+					<decoration type="block" blockname="treeAzalea" prob="0.00081"/>
+					<decoration type="block" blockname="plantedCoffee3Harvest" prob="0.000481"/>
+					<decoration type="block" blockname="plantedGraceCorn3Harvest" prob="0.001381"/>
+					<decoration type="block" blockname="plantedPumpkin3Harvest" prob="0.000381"/>
+
+			<!-- mjedit - these following 3 lines are clearly written by a sadist who doesn't want or like friends, don't leave these unless you want your players to hate you and your mod. -->
+					<decoration type="block" blockname="trapSpikesWoodDmg0" prob="0.001781" offset="-1"/>
+					<decoration type="block" blockname="mineCandyTin" prob="0.00011" />
+					<decoration type="block" blockname="mineHubcap" prob="0.000081" />
+
+			<!-- mjedit - this next line is where your plant's block growth stage 3 randomHelper name goes. followed by the block we removed first so it squeazes in between that one and the end of the list. -->
+					<decoration type="block" blockname="plantedurPlantNameHere3Harvest" prob=".000381" />
+					<decoration type="block" blockname="treeSnowyGrassDiagonal" prob=".1" />
+
+	</append>
+	<remove xpath="/worldgeneration/biomes/biome[@name='pine_forest']/decorations/decoration[@blockname='treeTallGrassDiagonal']"/>
+	<remove xpath="/worldgeneration/biomes/biome[@name='pine_forest']/decorations/decoration[@blockname='treeShortGrass']"/>
+	<append xpath="/worldgeneration/biomes/biome[@name='pine_forest']/decorations">
+
+			<!-- mjedit - these following 4 lines are totally extra and should probably be deleted from your mod. -->
+					<decoration type="block" blockname="treeAzalea" prob="0.001481"/>
+					<decoration type="block" blockname="plantedBlueberry3Harvest" prob="0.000381"/>
+					<decoration type="block" blockname="plantedHop3Harvest" prob="0.0001181"/>
+					<decoration type="block" blockname="plantedPotato3Harvest" prob="0.00021181"/>
+					
+			<!-- mjedit - these following 3 lines are clearly written by a sadist who doesn't want or like friends, don't leave these unless you want your players to hate you and your mod. -->
+					<decoration type="block" blockname="trapSpikesWoodDmg0" prob="0.0001181" offset="-1"/>
+					<decoration type="block" blockname="mineCandyTin" prob="0.0000175" />
+					<decoration type="block" blockname="mineHubcap" prob="0.0000081" />
+
+			<!-- mjedit - this next line is where your plant's block growth stage 3 randomHelper name goes. followed by the blocks we removed first so it squeazes in between those and the end of the list. -->
+					<decoration type="block" blockname="plantedurPlantNameHere3Harvest" prob=".0000281" />
+					<decoration type="block" blockname="treeTallGrassDiagonal" prob=".4" />
+					<decoration type="block" blockname="treeShortGrass" prob=".8" />
+					<decoration type="prefab" name="blueberryfield_sm" prob=".01" rotatemax="3"/>
+
+	</append>
+	<remove xpath="/worldgeneration/biomes/biome[@name='desert']/decorations/decoration[@blockname='treeOakMed01']"/>
+	<remove xpath="/worldgeneration/biomes/biome[@name='desert']/decorations/decoration[@blockname='treeOakSml01']"/>
+	<append xpath="/worldgeneration/biomes/biome[@name='desert']/decorations">
+
+			<!-- mjedit - these following 2 lines are totally extra and should probably be deleted from your mod. -->
+					<decoration type="block" blockname="plantedGraceCorn3Harvest" prob="0.00281"/>
+					<decoration type="block" blockname="plantedHop3Harvest" prob="0.0001181"/>
+
+			<!-- mjedit - these following 3 lines are clearly written by a sadist who doesn't want or like friends, don't leave these unless you want your players to hate you and your mod. -->
+					<decoration type="block" blockname="trapSpikesWoodDmg0Spawner" prob="0.001181" offset="-1"/>
+					<decoration type="block" blockname="mineCandyTin" prob="0.00013" />
+					<decoration type="block" blockname="mineHubcap" prob="0.000093" />
+
+			<!-- mjedit - this next line is where your plant's block growth stage 3 randomHelper name goes. followed by the blocks we removed first so it squeazes in between those and the end of the list. -->
+					<decoration type="block" blockname="plantedurPlantNameHere3Harvest" prob=".000381" />
+					<decoration type="block" blockname="treeOakMed01" prob="0.0003" rotatemax="7" />
+					<decoration type="block" blockname="treeOakSml01" prob="0.002" rotatemax="7" />
+
+	</append>
+	<append xpath="/worldgeneration/biomes/biome[@name='wasteland']/decorations">
+
+			<!-- mjedit - these following 3 lines are totally extra and should probably be deleted from your mod. -->
+					<decoration type="block" blockname="plantedGraceCorn3Harvest" prob="0.00181"/>
+					<decoration type="block" blockname="plantedHop3Harvest" prob="0.0001181"/>
+					<decoration type="block" blockname="plantedPotato3Harvest" prob="0.0001181"/>
+
+			<!-- mjedit - these following 4 lines are clearly written by a sadist who doesn't want or like friends, don't leave these unless you want your players to hate you and your mod. -->
+					<decoration type="block" blockname="trapSpikesWoodDmg0" prob="0.0042" offset="-1"/>
+					<decoration type="block" blockname="trapSpikesWoodDmg0" prob="0.0042"/>
+					<decoration type="block" blockname="mineCandyTin" prob="0.00013" />
+					<decoration type="block" blockname="mineHubcap" prob="0.000093" />
+
+			<!-- mjedit - this next line is where your plant's block growth stage 3 randomHelper name goes at the end of the list. -->
+					<decoration type="block" blockname="plantedurPlantNameHere3Harvest" prob=".000418" />
+
+	</append>
+	<append xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/decorations">
+
+			<!-- mjedit - these following 2 lines are totally extra and should probably be deleted from your mod. -->
+					<decoration type="block" blockname="plantedGraceCorn3Harvest" prob="0.00381"/>
+					<decoration type="block" blockname="plantedPotato3Harvest" prob="0.0001181"/>
+
+			<!-- mjedit - these following 3 lines are clearly written by a sadist who doesn't want or like friends, don't leave these unless you want your players to hate you and your mod. -->
+					<decoration type="block" blockname="trapSpikesWoodDmg0" prob="0.001981" offset="-1"/>
+					<decoration type="block" blockname="mineCandyTin" prob="0.00015" />
+					<decoration type="block" blockname="mineHubcap" prob="0.0001" />
+
+			<!-- mjedit - this next line is where your plant's block growth stage 3 randomHelper name goes at the end of the list. -->
+					<decoration type="block" blockname="plantedurPlantNameHere3Harvest" prob=".000081" />
+
+	</append>
+
+
+</mj>

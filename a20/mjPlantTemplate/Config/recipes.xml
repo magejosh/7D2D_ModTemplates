@@ -1,0 +1,47 @@
+<magejosh>
+
+			<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+
+    <append xpath="/recipes">
+	
+		<!-- mjedit - this recipe is set at the vanilla value for crafting seeds. If you think the vanilla game is too hard for farming you probably want that 5 to be a 1. -->
+	    <recipe name="plantedurPlantNameHere1" count="1" craft_time="1" tags="perkLivingOffTheLand,learnable">
+	        <ingredient name="foodCropurPlantNameHere" count="5"/>
+        </recipe>
+		
+	    <recipe name="drinkJarurPlantNameHere" count="1" tags="perkMasterChef" always_unlocked="true">
+	        <ingredient name="foodCropurPlantNameHere" count="8"/>
+	        <ingredient name="drinkJarEmpty" count="1"/>
+			<!-- mjedit - this effect_group is not necessary, it's just a demonstration of how to make the primary ingredient scale in cost as you increase a perk level. This works because perkMasterChef has a property linked to CraftingIngredientCount -->
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="1,5" operation="base_add" value="-1" tags="foodCropurPlantNameHere"/>
+			</effect_group>
+        </recipe>
+		
+	    <recipe name="foodGrilledurPlantNameHere" count="1" craft_time="15" tags="perkMasterChef,learnable" craft_area="campfire" craft_tool="toolCookingGrill" >
+	        <ingredient name="foodCropurPlantNameHere" count="5"/>
+			<!-- mjedit - this effect_group is not necessary, it's just a demonstration of how to make the primary ingredient reduce in cost as you increase to a specific perk level or above to represent being more efficient with resources with your higher skill. This works because perkMasterChef has a property linked to CraftingIngredientCount -->
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodCropurPlantNameHere"/>
+			</effect_group>
+        </recipe>
+		
+	    <recipe name="foodurPlantNameHerePie" count="1" craft_time="1" tags="perkMasterChef,learnable" craft_area="campfire" craft_tool="toolCookingPot" >
+			<ingredient name="foodCropurPlantNameHere" count="5"/>
+	<!-- mjedit - one of the two following ingredients should be commented out depending on if making a sweet or savory pie. remember recipes are limited to 5 ingredients total unless you alter the xui/windows.xml to allow it to fit more ingredients -->
+			<!-- <ingredient name="foodRawMeat" count="5"/> -->
+			<ingredient name="foodEgg" count="1"/>
+	<!-- mjedit - the following three ingredients are staple pie ingredients. -->
+			<ingredient name="foodCornMeal" count="1"/>
+			<ingredient name="resourceAnimalFat" count="1"/>
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+			<!-- mjedit - this effect_group is not necessary, it's just a demonstration of how to make the primary ingredient reduce in cost as you increase to a specific perk level or above to represent being more efficient with resources with your higher skill. This works because perkMasterChef has a property linked to CraftingIngredientCount -->
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="4,5" operation="base_add" value="-1" tags="foodCropurPlantNameHere"/>
+			</effect_group>
+        </recipe>
+	
+		
+	</append>
+
+</magejosh>

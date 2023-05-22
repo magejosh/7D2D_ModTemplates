@@ -1,0 +1,9 @@
+<magejosh>
+
+			<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+
+    <append xpath="/doc/tips">
+        <tip key="loadingTipurPlantNameHere" />
+    </append>
+    
+</magejosh>

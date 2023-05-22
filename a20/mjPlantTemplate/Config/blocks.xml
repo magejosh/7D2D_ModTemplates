@@ -1,0 +1,130 @@
+<magejosh>
+    
+			<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+	
+	<append xpath="/blocks">
+
+			<!-- mjedit - these first two are not player blocks of your plant, instead these are meant to be used if you want to add your plant to the biomes or blockplaceholders xmls as ways to add your plant into the world. They do not grow like player planted ones, they are simply to provide two variant appearance models of the same wild crop. If you do not want wild crop versions of your plant, then comment them out. -->
+		<!-- NOT_A_SHAPE -->
+		<block name="urPlantNameHere01">
+			<property name="DisplayInfo" value="Description"/>
+			<property name="DescriptionKey" value="urPlantNameHere01Desc"/>
+			<property name="Material" value="MurPlantNameHere"/>
+			<!-- mjedit - the following lines are related to the model asset being used. placeholders with vanilla values are in place for each block, with a commented out alt model line as well. If adding your own models make sure you get this section right based on your unity assetbundlename. -->
+			<property name="Shape" value="Ext3dModel"/>
+			<property name="Texture" value="293"/>
+			<property name="Mesh" value="models"/>
+			<property name="Model" value="OutdoorDecor/mushroom01" param1="main_mesh"/>
+			<!-- <property name="Model" value="assetbundlename/urPlantNameHere01" param1="main_mesh"/> -->
+			<property name="HandleFace" value="Bottom"/>
+			<!-- mjedit - you'll likely want to leave these three lines that follow alone in most use cases -->
+			<property name="Collide" value="melee"/>
+			<property name="IsTerrainDecoration" value="true"/>
+			<property name="HarvestOverdamage" value="false"/>
+			<!-- mjedit - here you'll see the harvest breakdowns for this plant. the Destroy and Fall lines will almost always want to be the same as they are now. The two Harvest lines however are an example of the vanilla default method of allowing harvest counts to align with the numbers described in the Living Off the Land Perk descriptions. the tags are also connected to that perk as well as the player's entityclass entry.  -->
+			<drop event="Harvest" name="foodCropurPlantNameHere" count="1" tag="wildCropsHarvest"/>
+			<drop event="Harvest" name="foodCropurPlantNameHere" prob="0.5" count="1" tag="bonusCropHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="resourceYuccaFibers" count="0" prob="1" stick_chance="0"/>
+			<property name="FilterTags" value="MC_outdoor,SC_crops"/>
+			<property name="SortOrder1" value="a090"/>
+		</block>
+
+		<!-- NOT_A_SHAPE -->
+		<block name="urPlantNameHere02">
+			<property name="Extends" value="urPlantNameHere01"/>
+			<property name="Model" value="OutdoorDecor/mushroom02" param1="main_mesh"/>
+			<!-- <property name="Model" value="assetbundlename/urPlantNameHere02" param1="main_mesh"/> -->
+			<property name="Collide" value="melee"/>
+		</block>
+
+		<!-- mjedit - here starts the player planted block chain of block growth stages. whoo, that was a mouthful, probably a better way to say that. oh well. These grow one to the next with the exception of the randomHelper block placeholder variant block. If not using that, ignore the need to add anything to blockplaceholders and nothing will break. If however you want to use it, then copy plantedurPlantNameHere3Harvest and the two block names above into a blockplacholder of the same name as plantedurPlantNameHere3Harvest, then add that block name to biomes.xml to have it show up in the wild naturally. Or, you can add it to an appropriate blockplaceholder list for a crop that already has one to see it show up randomly in some POIs.  -->
+		<!-- NOT_A_SHAPE -->
+		<block name="plantedurPlantNameHere1">
+			<property name="Extends" value="cropsGrowingMaster" param1="CustomIcon,DescriptionKey,MultiBlockDim,OnlySimpleRotations"/>
+			<property name="CreativeMode" value="Player"/>
+			<property name="DescriptionKey" value="urPlantNameHere01Desc"/>
+			<property name="DisplayInfo" value="Name"/>
+			<property name="UnlockedBy" value="perkLivingOffTheLand,plantedurPlantNameHere1Schematic"/>
+			<property name="Material" value="MurPlantNameHeres"/>
+			<property name="LightOpacity" value="0"/>
+			<property name="Shape" value="Ext3dModel"/>
+			<property name="Texture" value="293"/>
+			<property name="Mesh" value="models"/>
+			<property name="Model" value="OutdoorDecor/mushroom_sprout" param1="main_mesh"/>
+			<!-- <property name="Model" value="assetbundlename/urPlantNameHere_sprout" param1="main_mesh"/> -->
+			<property name="Collide" value="melee"/>
+			<property name="HandleFace" value="Bottom"/>
+
+			<property name="PlantGrowing.GrowthRate" value="63.0"/> <!-- default, For testing, this rate (in minutes) should be set no lower than 2 -->
+			<property name="PlantGrowing.FertileLevel" value="15"/> <!-- default, change to 0 to plant anywhere -->
+			<property name="PlantGrowing.IsRandom" value="false"/> <!-- default, don't think changing this works but idk -->
+			
+			<property name="PlantGrowing.LightLevelGrow" value="8"/> <!-- default, light required for growing up, change to 0 to grow regardless of light -->
+			<property name="PlantGrowing.LightLevelStay" value="0"/> <!-- default, light required for not dieing off, change to 8 if you want it to die without light -->
+
+			<property name="PlantGrowing.Next" value="plantedurPlantNameHere2"/> <!-- this should be the next block in the chain -->
+
+			<property name="HarvestOverdamage" value="false"/>
+			<drop event="Destroy" name="plantedurPlantNameHere1" count="1"/>
+			<property name="EconomicValue" value="12"/>
+			<property name="EconomicBundleSize" value="5"/>
+			<property name="Group" value="Food/Cooking"/>
+			<property name="PickupJournalEntry" value="farmingTip"/>
+		</block>
+
+		<!-- NOT_A_SHAPE -->
+		<block name="plantedurPlantNameHere2">
+			<property name="Extends" value="plantedurPlantNameHere1"/>
+			<property name="CustomIcon" value="plantedurPlantNameHere1"/>
+			<property name="CreativeMode" value="None"/>
+			<property name="Model" value="OutdoorDecor/mushroom_growth" param1="main_mesh"/>
+			<!-- <property name="Model" value="assetbundlename/urPlantNameHere_growth" param1="main_mesh"/> -->
+			<property name="PlantGrowing.Next" value="plantedurPlantNameHere3HarvestPlayer"/>
+			<property name="Collide" value="melee"/>
+		</block>
+
+		<!-- mjedit - this is the randomHelper blockplaceholder block. It will only ever be placed by the rng placement of biomes.xml or blockplaceholders or if you add it to a POI you create, but is required to remain where it is as the player plant harvest block depends on it to be here. yes you could remove it if not using random crop placement, but that means you will need to change the player harvest block to not extend from it and to have the relevant propeties listed in it. Easier to leave it in and not add it to biomes or blockplaceholders. Now, in order for your plant to be found in game, you will have to add it to the loot or traders at the least if not into biomes and/or blockplaceholders, or a player in game will never encounter it, even though you could turn on creative menu and pull a working growing copy out. -->
+		<!-- NOT_A_SHAPE -->
+		<block name="plantedurPlantNameHere3Harvest">
+			<property name="DescriptionKey" value="urPlantNameHere01Desc"/>
+			<property name="Material" value="MurPlantNameHere"/>
+			<property name="DisplayType" value="blockMulti"/>
+			<property name="DisplayInfo" value="Description"/>
+			<property name="Shape" value="Ext3dModel"/>
+			<property name="Texture" value="293"/>
+			<property name="Mesh" value="models"/>
+			<property name="Model" value="OutdoorDecor/mushroom_harvest" param1="main_mesh"/>
+			<property name="Model" value="assetbundlename/urPlantNameHere_harvest" param1="main_mesh"/>
+			<property name="Collide" value="melee"/>
+			<property name="VehicleHitScale" value=".1"/>
+			<property name="IsTerrainDecoration" value="true"/>
+			<!--<property name="Class" value="CropsGrown"/>-->
+			<property name="PlantGrowing.FertileLevel" value="0"/>
+			<property name="CropsGrown.BonusHarvestDivisor" value="16"/>
+			<property name="HarvestOverdamage" value="false"/>
+			<drop event="Harvest" name="foodCropurPlantNameHere" count="1" tag="wildCropsHarvest"/>
+			<drop event="Harvest" name="foodCropurPlantNameHere" prob="0.5" count="1" tag="bonusCropHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="resourceYuccaFibers" count="0" prob="1" stick_chance="0"/>
+			<property name="PickupJournalEntry" value="farmingTip"/>
+			<property name="FilterTags" value="MC_outdoor,SC_crops"/>
+		</block>
+
+		<!-- NOT_A_SHAPE -->
+		<block name="plantedurPlantNameHere3HarvestPlayer">
+			<property name="Extends" value="plantedurPlantNameHere3Harvest"/>
+			<property name="DescriptionKey" value="urPlantNameHere01Desc"/>
+			<property name="CustomIcon" value="plantedurPlantNameHere3Harvest"/>
+			<property name="CreativeMode" value="None"/>
+			<drop event="Harvest" name="foodCropurPlantNameHere" count="2" tag="cropHarvest"/>
+			<drop event="Harvest" name="foodCropurPlantNameHere" prob="0.5" count="1" tag="bonusCropHarvest"/>
+			<drop event="Destroy" name="plantedurPlantNameHere1" count="1" prob="0.5"/>
+			<!-- mjedit - uncomment the line below if you want it to become a planted seed when you harvest it. -->
+			<!-- <property name="DowngradeBlock" value="plantedurPlantNameHere1"/> -->
+		</block>
+
+
+    </append>
+	
+</magejosh>

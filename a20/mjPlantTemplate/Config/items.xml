@@ -1,0 +1,179 @@
+<magejosh>
+
+			<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+
+    <append xpath="/items">
+	
+	    <item name="foodCropurPlantNameHere">
+	        <property name="Extends" value="foodCropBlueberries"/>
+			<property name="Tags" value="food"/>
+			<!-- mjedit - this next line below is linked to the entry of the same name found in ui_display.xml, if you keep the dysentery risk then leave it as foodraw, if you comment that feature out, then change the DisplayType to "food" -->
+	        <property name="DisplayType" value="foodRaw"/>
+			<!-- mjedit - this next line below is where you decide on an icon, if xml only mod you'll have to pick one from the vanilla options and will want to recolor it with the tint property. Use Hexidecimal color codes in the icon tint, just search for color picker in google to find a color wheel that gives you color values. pick the one called hex. -->
+	        <property name="CustomIcon" value="foodCropBlueberries"/> <property name="CustomIconTint" value="400073"/>
+			<!-- mjedit - the next three lines are only important if you are planning to sell or be able to sell your food crop at the trader. Leave sellable to false if you want to have players able to buy it at the trader but not sell it. if you don't want them to be able to buy it at the trader, that change is made in traders.xml, EconomicBundleSize is like a multiplier to the count number found for the item in traders.xml -->
+			<property name="SellableToTrader" value="false"/>
+	        <property name="EconomicValue" value="50"/>
+	        <property name="EconomicBundleSize" value="10"/>
+			<!-- mjedit - the next line sets a flat rate to using this item as an ingredient when calculating a recipe with it listed as first ingredient -->
+	        <property name="CraftingIngredientTime" value="10"/>
+			<!-- mjedit - this next line should be commmented out if you want the item to be unlocked for crafting. since this is a food crop, you will likely never have a situation where you would want to be able to lock or unlock crafting it. But, if this were a cooked/prepared food item made from a food crop then it would make sense if you needed to unlock the recipe for it that it were unlocked by a perk at the least, a schematic as well if you wanted one. -->
+			<!-- <property name="UnlockedBy" value="perkLivingOffTheLand" /> -->
+			<property name="DescriptionKey" value="foodCropurPlantNameHereDesc"/>
+			<!-- mjedit - comment out the next line if you don't want a journal tip for the first time a player harvests or loots your food crop the first time. -->
+			<property name="PickupJournalEntry" value="urPlantNameHereTip"/>
+			<!-- mjedit - the Action0 below is necessary to make your food crop edible. -->
+	        <property class="Action0">
+		        <property name="Delay" value="1.0"/>
+	        </property>
+	        <property name="Group" value="Food/Cooking,CFFood/Cooking,Science"/>
+		<!-- mjedit - So here you need to decide on what effect eating your food in it's raw uncooked form does. Vanilla Blueberries have the effect group below this line. -->
+			<effect_group tiered="false" name="Food Tier 0">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+		<!-- mjedit - Here this effect group gives 3 food instead of 1, but also carries a risk of dysentery. The specific percent chance shown on the item in the stat block in game UI comes from the value listed in the display_value tag. The actual chance is calculated based on the initial set amount and then added to by the player's current $MetabolismResist cvar value. The buff is a necessary component of the effect, on each part. Removing either will break that function it's connected to.	 -->
+	        <effect_group tiered="false">
+		        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="3"/>
+		        <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".DiseaseRoll" operation="set" value="4"/><display_value name="dDysenteryRisk" value=".12"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".DiseaseRoll" operation="add" value="@$MetabolismResist"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDysenteryCatchDrink">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="@.DiseaseRoll"/>
+				</triggered_effect>
+			</effect_group>
+			<!-- mjedit - If you feel your raw food crop needs more reason to eat than just food. Minor fatigue relief is handy as an alternative to adding direct healing to a raw food since the food amount will provide slow healing already. Also beats giving out a powerful buff just for eating raw crops as food. That is pretty unbalancing to the game as it is, so maybe be mindful when choosing the benefit for your added food. I like to ask myself, if i was the munchkin playing this mod, how would i cheese this mechanic, then adjust it accordingly. But hey, this is your mod, you do you boo.-->
+	        <effect_group tiered="false">
+				<requirement name="CVarCompare" cvar="$fatiguedCounter" operation="GTE" value="8">
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$fatiguedCounter" operation="subtract" value="1"/>
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$fatiguedCounter" operation="subtract" value="@$critHitNaturalHealingRate"/>
+				</requirement>
+		   </effect_group>
+
+		   <!-- mjedit - a final consideration, currently as is in the template all three sets of effect groups are active on this raw food. You need to decide if you want your raw crop doing all these things or just some of them. As you're testing and experimenting, comment one or more effect groups out completely and see how they play. As modders we forget to spend time playing the game we are modding. Take an hour and just play the game, grow your new crops while clearing a POI or something. Have Fun. -->
+        </item>
+
+
+	<!-- mjedit - now we look at what can be cooked or prepared from your new plant. maybe it can be juiced? Maybe it is prepared grilled, or made into a pie of some kind? What if juicing it can be done by anyone, or grilling it can be done by anyone that can cook, but only a skilled cook or someone who knows the recipe can cook the pie? That's how I'll set this up for you so you can see the different configurations with more examples. -->
+
+		<item name="drinkJarurPlantNameHere">
+			<property name="HoldType" value="3"/>
+			<property name="DisplayType" value="drinkurPlantNameHere"/>
+			<property name="Meshfile" value="#Other/Items?Food/bottled_waterPrefab.prefab"/>
+			<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+			<property name="Material" value="Mglass"/>
+			<property name="Stacknumber" value="10"/> <!-- STK drink -->
+			<property name="Weight" value="10"/>
+			<property name="EconomicValue" value="68"/>
+			<property name="DescriptionKey" value="drinkJarurPlantNameHereDesc"/>
+			<property name="CustomIcon" value="drinkYuccaJuiceSmoothie"/> <property name="CustomIconTint" value="400073"/>
+			<property class="Action0">
+				<property name="Class" value="Eat"/>
+				<property name="Delay" value="1.0"/>
+				<property name="Use_time" value="..."/>
+				<property name="Sound_start" value="player_drinking"/>
+				<property name="Create_item" value="drinkJarEmpty"/>
+			</property>
+			<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
+			<effect_group tiered="false" name="Drink Tier 0/1">
+				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		        	<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="4"/>
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="3"/>
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="12"/>
+					<!-- mjedit - as far as i can tell this next line is the automatic value for drinking something, all vanilla drinks have the same value here and no correlating value remains the same to pair to it. meaning, leave it be. and the buff after it is required to get the benefits above to process on the player correctly. -->
+					<display_value name="dStaminaRegen" value=".15"/>
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+	        <effect_group tiered="false">
+				<requirement name="CVarCompare" cvar="$fatiguedCounter" operation="GTE" value="3">
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$fatiguedCounter" operation="subtract" value="1"/>
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$fatiguedCounter" operation="subtract" value="@$critHitNaturalHealingRate"/>
+				</requirement>
+		   </effect_group>
+
+			<effect_group tiered="false">
+				<requirement name="HasBuff" buff="buffIsOnFire"/>
+					<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffExtinguishFire"/>
+			</effect_group>
+		</item>
+
+
+		<item name="foodGrilledurPlantNameHere">
+			<property name="Tags" value="food"/>
+			<property name="HoldType" value="31"/>
+			<property name="DisplayType" value="foodWaterNegative"/>
+			<property name="Meshfile" value="#Other/Items?Misc/parcelPrefab.prefab"/>
+			<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+			<property name="Material" value="Morganic"/>
+			<property name="Stacknumber" value="10"/> <!-- STK food -->
+			<property name="EconomicValue" value="16"/>
+			<property name="EconomicBundleSize" value="2"/>
+			<property name="DescriptionKey" value="foodGrilledurPlantNameHereDesc"/>
+			<property name="CustomIcon" value="foodCropBlueberries"/> <property name="CustomIconTint" value="400073"/>
+			<property name="UnlockedBy" value="perkMasterChef"/>
+			<property class="Action0">
+				<property name="Class" value="Eat"/>
+				<property name="Delay" value="1.0"/>
+				<property name="Use_time" value="..."/>
+				<property name="Sound_start" value="player_eating"/>
+			</property>
+			<property name="Group" value="Food/Cooking,CFFood/Cooking"/>
+
+			<effect_group tiered="false" name="Food Tier 1">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="5"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="water" operation="add" value="-5"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="10"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+				<display_value name="$waterAmountAdd" value="-5"/>
+			</effect_group>
+		</item>
+
+		<item name="foodurPlantNameHerePie">
+			<property name="Tags" value="food"/>
+			<property name="HoldType" value="31"/>
+			<property name="DisplayType" value="food"/>
+			<property name="Meshfile" value="#Other/Items?Misc/parcelPrefab.prefab"/>
+			<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+			<property name="Material" value="Morganic"/>
+			<property name="Stacknumber" value="10"/> <!-- STK food -->
+			<property name="EconomicValue" value="124"/>
+			<property name="DescriptionKey" value="foodurPlantNameHerePieDesc"/>
+			<property name="CustomIcon" value="foodBlueberryPie"/> <property name="CustomIconTint" value="400073"/>
+			<property name="UnlockedBy" value="perkMasterChef,foodurPlantNameHerePieSchematic"/>
+			<property class="Action0">
+				<property name="Class" value="Eat"/>
+				<property name="Delay" value="1.0"/>
+				<property name="Use_time" value="..."/>
+				<property name="Sound_start" value="player_eating"/>
+				<!-- jar from cooking food <property name="Create_item" value="drinkJarEmpty"/> -->
+			</property>
+			<property name="Group" value="Food/Cooking,CFFood/Cooking"/>
+			<effect_group tiered="false" name="Food Tier 2">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="45"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="22"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+		</item>
+
+
+
+		<item name="foodurPlantNameHerePieSchematic">
+			<property name="Extends" value="schematicNoQualityRecipeMaster"/>
+			<property name="CreativeMode" value="Player"/>
+			<property name="DescriptionKey" value="foodurPlantNameHerePieSchematicDesc"/>
+			<property name="CustomIcon" value="foodBlueberryPie"/> <property name="CustomIconTint" value="400073"/>
+			<property name="Unlocks" value="foodurPlantNameHerePie"/>
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodurPlantNameHerePie" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+			</effect_group>
+		</item>
+
+
+
+	</append>
+
+</magejosh>

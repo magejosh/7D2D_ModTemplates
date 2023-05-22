@@ -1,0 +1,29 @@
+<configs>
+
+			<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+			<!-- mjedit - this material is just vanilla Mcorn with the name changed. Probably an unnecessary step but seemed best fit for most new plant types. Use a material from a vanilla plant similar to yours or a custom one like this one on your custom plant blocks with the Material property name. -->
+
+ 	
+	<append xpath="/materials">
+	
+
+		<material id="MurPlantNameHere">
+			<property name="damage_category" value="earth"/>
+			<property name="surface_category" value="plant"/>
+			<property name="particle_category" value="xt_tallgrass"/>
+			<property name="particle_destroy_category" value="xt_tallgrass"/>
+			<property name="Hardness" type="float" value="1"/>
+			<property name="stepsound" value="grass"/>
+			<property name="lightopacity" value="0"/>
+			<property name="plant" value="true"/>
+			<property name="stability_glue" value="0"/>
+			<property name="Mass" type="int" value="1"/>
+			<property name="StabilitySupport" value="false"/>
+			<property name="MaxDamage" value="1"/>
+			<property name="Experience" value="0"/>
+		</material>	
+			
+	
+    </append>
+	
+</configs>

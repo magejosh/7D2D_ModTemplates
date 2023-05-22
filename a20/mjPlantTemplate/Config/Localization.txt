@@ -1,0 +1,31 @@
+﻿Key,english
+
+urPlantNameHere,"This is a loading screen tip for mentioning your new plant, in case you might want to tell people about it here rather than the journal."
+
+urPlantNameHereTip,"urPlantNameHere Journal Tip goes here"
+urPlantNameHereTip_title,"urPlantNameHere Journal Tip title goes here"
+
+urPlantNameHere01,"urPlantNameHere"
+urPlantNameHere01Desc,"urPlantNameHere Description goes here, don't forget to fill it in. All your plant blocks will have this Description unless you add new ones and make sure their block entry has the right property name=DescriptionKey value pointing to the new one you made. Players will only ever see this one as they only ever have the seed block in their inventory to read the Description to."
+urPlantNameHere02,"urPlantNameHere"
+urPlantNameHere02Desc,"urPlantNameHere Description goes here, but there's no need to fill it in, because this block uses the Description from the 01 version of the block, unless you go change that."
+plantedurPlantNameHere1,"urPlantNameHere Seed"
+plantedurPlantNameHere2,"urPlantNameHere (Growing)"
+plantedurPlantNameHere3Harvest,"urPlantNameHere (Harvestable)"
+plantedurPlantNameHere3HarvestPlayer,"urPlantNameHere (Harvestable)"
+
+foodCropurPlantNameHere,"urPlantNameHere"
+foodCropurPlantNameHereDesc"urPlantNameHere player food crop Description goes here, don't forget to fill it in."
+
+drinkJarurPlantNameHere,"urPlantNameHere Juice"
+drinkJarurPlantNameHereDesc,"urPlantNameHere Juice Description for Players"
+
+foodGrilledurPlantNameHere,"Grilled urPlantNameHere"
+foodGrilledurPlantNameHereDesc,"Grilled urPlantNameHere Description for Players"
+
+foodurPlantNameHerePie,"urPlantNameHere Pie"
+foodurPlantNameHerePieDesc,"urPlantNameHere Pie Description for Players"
+
+foodurPlantNameHerePieSchematic,"urPlantNameHere Pie Recipe"
+foodurPlantNameHerePieSchematicDesc,"urPlantNameHere Pie Recipe Description for Players"
+

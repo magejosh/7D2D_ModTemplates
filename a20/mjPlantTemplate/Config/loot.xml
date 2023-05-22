@@ -1,0 +1,72 @@
+<magejosh>
+
+ 		<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+
+ <!-- seeds -->
+  <append xpath="/lootcontainers/lootgroup[@name='seeds']">
+	<item name="plantedurPlantNameHere1" count="1,6" prob="1.00"/>
+  </append>
+
+  <!-- mjedit - you will need to decide on the loot category rarity level of your food crops. Comment out the others. -->
+ <append xpath="/lootcontainers/lootgroup[@name='groupIngredientsCommon']">
+	<item name="foodCropurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='groupIngredientsUncommon']">
+	<item name="foodCropurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='groupIngredientsRare']">
+	<item name="foodCropurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+  <!-- mjedit - you will probably want your cooked/prepared food items in this group if it's not showing up in loot often enough. Comment it out if the others are providing plenty of it in loot. -->
+ <append xpath="/lootcontainers/lootgroup[@name='groupFoodPileCommon']">
+	<item name="foodGrilledurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+  <!-- mjedit - you will need to decide on the loot category rarity level of your food crops. Comment out the others. -->
+ <append xpath="/lootcontainers/lootgroup[@name='groupFoodCommon']">
+	<item name="foodGrilledurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='groupFoodUncommon']">
+	<item name="foodGrilledurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='groupFoodRare']">
+	<item name="foodCropurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+  <!-- mjedit - you will need to decide on the loot category rarity level of your food crops juice drink. Comment out the others. -->
+ <append xpath="/lootcontainers/lootgroup[@name='groupDrinksCommon']">
+	<item name="drinkJarurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='groupDrinksUncommon']">
+	<item name="drinkJarurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='groupDrinksRare']">
+	<item name="drinkJarurPlantNameHere" count="1,12" prob="1.00"/>
+  </append>
+
+  <!-- mjedit - this one is for your new pie, same loot group as all the other high quality foods. -->
+ <append xpath="/lootcontainers/lootgroup[@name='groupFoodRare']">
+	<item name="foodurPlantNameHerePie" count="1,12" prob="1.00"/>
+  </append>
+
+  <!-- mjedit - this one is for your new pie recipe, you will need to decide on the loot category rarity level of your pie recipe. In vanilla this would be T1 or T2. Comment out the others. -->
+ <append xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT0']">
+	<item name="foodurPlantNameHerePieSchematic" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT1']">
+	<item name="foodurPlantNameHerePieSchematic" count="1,12" prob="1.00"/>
+  </append>
+
+ <append xpath="/lootcontainers/lootgroup[@name='farmingCookingRecipesT2']">
+	<item name="foodurPlantNameHerePieSchematic" count="1,12" prob="1.00"/>
+  </append>
+
+</magejosh>

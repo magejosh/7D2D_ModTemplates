@@ -1,0 +1,42 @@
+<magejosh> 
+
+			<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+
+	<append xpath="/blockplaceholders">
+		<placeholder name="plantedurPlantNameHere3Harvest">
+			<block name="urPlantNameHere01" prob="0.4225"/>
+			<block name="urPlantNameHere02" prob="0.4225"/>
+			<!-- mjedit - the lines below are there to serve as a prob balancing factor and should remain if you want there to be a good random dispersion of your wild crop. additionally to serve as an example of how to distribute the probs differently across the biomes for a plant if you decide that's helpful to you. Duplicate the lines below and change the plant block names to yours, then adjust the probs for the different biomes to suit your needs.  -->
+			<block name="air" prob="0.1"/>
+			<block name="treeSnowyGrassDiagonal" prob="0.431" biome="snow" randomrotation="true"/>
+			<block name="treeTallGrassDiagonal" prob="0.431" biome="pine_forest" randomrotation="true"/>
+			<block name="treeBrownGrassDiagonal" prob="0.431" biome="desert" randomrotation="true"/>
+			<block name="treeBrownGrassDiagonal" prob="0.431" biome="water" randomrotation="true"/>
+			<block name="treeBrownGrassDiagonal" prob="0.431" biome="wasteland" randomrotation="true"/>
+			<block name="treeBrownGrassDiagonal" prob="0.431" biome="burnt_forest" randomrotation="true"/>
+		</placeholder>
+	
+	<!-- mjedit - if your new plant is a tree type then uncomment one or more lines below to have it seeded into the random trees placed in the world. -->
+
+	<!-- <append xpath="/blockplaceholders/placeholder[@name='treeSmallRandomHelper']">
+			<block name="plantedurPlantNameHere3Harvest" prob="0.137"/>
+	</append>
+	<append xpath="/blockplaceholders/placeholder[@name='treeSmallThinRandomHelper']">
+			<block name="plantedurPlantNameHere3Harvest" prob="0.37"/>
+	</append>
+	<append xpath="/blockplaceholders/placeholder[@name='treeMediumRandomHelper']">
+			<block name="plantedurPlantNameHere3Harvest" prob="0.37"/>
+	</append> -->
+
+
+	<!-- mjedit - the following section doesn't belong in this mod, but if you use the Neebs paintings mod by khaine you should totally use this to add them to the world randomly. -->
+	<!-- <insertAfter xpath="/blockplaceholders/placeholder[@name='paintingPictureRandomHelper']/block[@name='paintingKen']">
+		<block name="signPosterNeebsRanchSim" prob="1.13"/>
+		<block name="signPosterNeebsArkSurvival" prob="1.13"/>
+		<block name="signPosterNeebsBFFs" prob="1.13"/>
+		<block name="signPosterNeebsDoraleous" prob="1.13"/>
+		<block name="signPosterNeebsZombieSurvivors" prob="1.13"/>
+		<block name="signPosterNeebsWorldPeace" prob="1.13"/>
+	</insertAfter> -->
+	
+</magejosh> 

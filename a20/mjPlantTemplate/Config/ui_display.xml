@@ -1,0 +1,27 @@
+<magejosh>
+
+			<!-- mjedit - use find and replace on urPlantNameHere to insert your plant into the template in the appropriate spots.  -->
+			<!-- mjedit - this one is basically the drinkYuccaJuiceSmoothie display_type with the hypothermia stat removed since our juice template item doesn't have a complex buff effect added to deliver such an effect. -->
+
+
+	<append xpath="/ui_display_info/item_display">		
+
+
+
+		<item_display_info display_type="drinkurPlantNameHere" display_group="groupConsumables">
+			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
+			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
+			<display_entry name="$waterAmountAdd" title_key="statWaterAmount"/>
+			<display_entry name="dStaminaRegen" title_key="statStaminaRegen" display_type="Percent"/>
+		</item_display_info>
+
+
+
+		
+	</append>	
+
+
+
+
+
+</magejosh>
