@@ -20,7 +20,7 @@ To get a local copy up and running, follow these simple steps:
 
 1. Clone the repo
 ```bash
-git clone https://github.com/magejosh/7D2D_ModTemplates.git
+git clone https://github.com/magejosh/7D2D_ModTemplates.git```
 
 2. Open the project in your favorite code editor and start modding!
 
